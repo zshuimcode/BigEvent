@@ -4,3 +4,8 @@ spring:
     url: jdbc:mysql://localhost:3306/big_event?characterEncoding=UTF-8
     password: 269842
     username: root
+
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
