@@ -1,49 +1,30 @@
-##ignore this file##
-/target/
-/.idea/
-/.settings/
-/.vscode/
-/bin/
-
-.classpath
-.project
-.settings
-.idea
- ##filter databfile、sln file##
-*.mdb
-*.ldb
-*.sln
-##class file##
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-# compression file
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-*.via
-*.tmp
-*.err
+# Logs
+logs
 *.log
-*.iml
-# OS generated files #
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-Icon?
-ehthumbs.db
-Thumbs.db
-.factorypath
-/.mvn/
-/mvnw.cmd
-/mvnw
+dist
+dist-ssr
+coverage
+*.local
+
+/cypress/videos/
+/cypress/screenshots/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.tsbuildinfo
