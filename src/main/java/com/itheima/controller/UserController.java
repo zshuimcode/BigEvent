@@ -10,12 +10,16 @@ import com.itheima.utils.ThreadLocalUtil;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/user")
@@ -24,6 +28,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     /**
      * 注册
@@ -52,6 +58,8 @@ public class UserController {
                 claims.put("id", user.getId());
                 claims.put("username", user.getUsername());
                 String token = JwtUtil.genToken(claims);
+                ValueOperations<String, String> op = stringRedisTemplate.opsForValue();
+                op.set(username, token, 7, TimeUnit.DAYS);
                 return Result.success(token);
             } else {
                 return Result.error("密码错误");
@@ -109,6 +117,8 @@ public class UserController {
 
 
         userService.updatePwd(newPwd);
+        ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+        operations.getOperations().delete(username);
         return Result.success();
     }
 
