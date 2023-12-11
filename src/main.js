@@ -3,10 +3,10 @@ import "./assets/main.scss";
 import { createApp } from "vue";
 import App from "./App.vue";
 
+import pinia from "@/stores";
 import router from "@/router";
-import pinia from "./stores";
 const app = createApp(App);
-app.use(router);
 app.use(pinia);
+app.use(router);
 
 app.mount("#app");

@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 import router from "@/router";
 
 const request = axios.create({
-  baseURL: "/api",
+  baseURL: "/firstapi",
   timeout: 5000,
 });
 

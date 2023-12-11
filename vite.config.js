@@ -27,10 +27,16 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api": {
+      "/firstapi": {
         target: "http://192.168.3.120:8080",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/firstapi/, ""),
+      },
+      "/api1": {
+        target: "https://smms.app/api/v2",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/api1/, ""),
       },
     },
   },

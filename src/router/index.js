@@ -7,10 +7,12 @@ import ArticleManage from "@/views/article/ArticleManage.vue";
 import UserAvatar from "@/views/user/UserAvatar.vue";
 import UserInfo from "@/views/user/UserInfo.vue";
 import UserResetPassword from "@/views/user/UserResetPassword.vue";
+import Test from "@/views/test/index.vue";
 
 
 const routes = [
   { path: "/login", component: Login },
+  { path: "/test", component: Test },
   {
     path: "/",
     component: Layout,
@@ -25,11 +27,18 @@ const routes = [
   },
 ];
 
-
 const router = createRouter({
   history: createWebHistory(),
-  routes:routes
-})
+  routes: routes,
+});
 
+router.beforeEach((to, from) => {
+  if (
+    to.path !== "/login" &&
+    JSON.parse(localStorage.getItem("user")).userToken === ""
+  ) {
+    return "/login";
+  }
+});
 
-export default router
+export default router;
